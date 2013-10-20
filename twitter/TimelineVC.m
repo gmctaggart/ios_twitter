@@ -85,110 +85,33 @@ static char indexPathKey;
     // Setup image loaded success block
     Tweet *tweet = self.tweets[indexPath.row];
     [cell setCellWithTweetAndSuccessBlock:tweet withImageLoadedBlock:(ImageLoadedSuccessFunction) ^(void) {
-//        [self.tableView reloadData];
-/*        [self.tableView beginUpdates];
-        NSArray *array = [NSArray arrayWithObject:indexPath];
-        [self reloadRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self.tableView endUpdates];
- */
+            //TODO: Fill in the block
     }];
     
     
     
     // hang on to this text for later
-    objc_setAssociatedObject(self.tableView, &indexPathKey, cell, OBJC_ASSOCIATION_RETAIN);
-    
-    // DO THIS ALREADY IN TWEET CELL
-    // pin label to top
-//    [cell pinToTop];
-//    CGFloat rowHeight = [self heightForText:labelText];
-//    cell.myLabel.frame = CGRectMake(0, 0, 300, rowHeight);
-    
-    
-    // Maybe add loading indicator to image icons
-    /*
-     indicator = [[UIActivityIndicator alloc] initWithActivityIndicatorStyle:
-     UIActivityIndicatorStyleWhite];
-     [indicator startAnimating];
-     */
+    //objc_setAssociatedObject(self.tableView, &indexPathKey, cell, OBJC_ASSOCIATION_RETAIN);
     
     
     return cell;
 }
 
-//+ (CGFloat)bodyLabelHeightForBodyString:(NSString *)pBodyString{
-//    CGSize bodySize = [pBodyString sizeWithFont:[UIFont fontWithName:@"HelveticaNeue" size:14.5f] constrainedToSize:CGSizeMake(BodyLabelWidth, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
-//    return bodySize.height;
-//}
-//
-//+ (CGFloat)calculatedCellHeightForBodyString:(NSString *)pBodyString{
-//    //Get body height
-//    CGFloat bodyHeight = [self bodyLabelHeightForBodyString:pBodyString];
-//    return BodyLabelYOrigin + bodyHeight + 10;
-//}
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 400;
+    return 200;
     
     
 //    TweetCell *cell = objc_getAssociatedObject(tableView, &indexPathKey);
 //    return cell.tweetLabelHeight;
-    
-    
-    
-//    UIFont *cellFont = cell.tweetFont;
-//    CGSize constraintSize = CGSizeMake(300, MAXFLOAT);
-//    CGSize labelSize = [cell.tweetText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
-//    CGFloat height = labelSize.height + 10;
-////    NSLog(@"height=%f", height);
-//    return height;
+
 }
 
 // TODO: adding this for debugging purposes
-- (void)reloadRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation
-{
-    [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+//- (void)reloadRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation
+//{
+//    [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
+//}
 
 #pragma mark - Table view delegate
 

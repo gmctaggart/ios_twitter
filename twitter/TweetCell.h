@@ -15,8 +15,6 @@
 @property (nonatomic,strong) Tweet *tweet;
 
 -(void)setCellWithTweetAndSuccessBlock:(Tweet *)tweet withImageLoadedBlock:(void (^)(void))successFunction;
-//-(UIFont *)tweetFont;
-//-(NSString *)tweetText;
 -(CGFloat)tweetLabelHeight;
 
 @end
