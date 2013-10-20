@@ -91,7 +91,7 @@ static char indexPathKey;
     
     
     // hang on to this text for later
-    //objc_setAssociatedObject(self.tableView, &indexPathKey, cell, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(indexPath, &indexPathKey, cell, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     
     return cell;
@@ -99,12 +99,9 @@ static char indexPathKey;
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 200;
     
-    
-//    TweetCell *cell = objc_getAssociatedObject(tableView, &indexPathKey);
-//    return cell.tweetLabelHeight;
-
+    TweetCell *cell = objc_getAssociatedObject(indexPath, &indexPathKey);
+    return cell.tweetLabelHeight;
 }
 
 // TODO: adding this for debugging purposes

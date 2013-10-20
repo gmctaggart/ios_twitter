@@ -62,18 +62,20 @@
     self.timestampLabel.text = tweet.timestamp;
     self.usernameLabel.text = tweet.user.name;
     
-    // make this label multi-line
+    // make the tweet label multi-line
+    self.tweetLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.tweetLabel.numberOfLines = 0;
+    
     CGFloat labelHeight = [self heightForLabel:self.tweetLabel];
     self.tweetLabel.frame = CGRectMake(0, 0, 300, labelHeight);
-    self.tweetLabel.lineBreakMode = NSLineBreakByWordWrapping;
 
     
-    [self.imageView setImageWithURL:[NSURL URLWithString:tweet.user.profilePicURL]];
+//    [self.imageView setImageWithURL:[NSURL URLWithString:tweet.user.profilePicURL]];
     
-//    [self.imageView setImageWithURL:[NSURL URLWithString:tweet.user.profilePicURL]
-//                          completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-//                              successFunction();
-//                          }];
+    [self.imageView setImageWithURL:[NSURL URLWithString:tweet.user.profilePicURL]
+                          completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                              successFunction();
+                          }];
 }
 
 
