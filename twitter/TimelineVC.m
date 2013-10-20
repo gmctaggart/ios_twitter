@@ -79,7 +79,6 @@ static char indexPathKey;
     if (cell == nil) {
         cell = [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-
     
     
     // Setup image loaded success block
@@ -89,19 +88,18 @@ static char indexPathKey;
     }];
     
     
-    
-    // hang on to this text for later
-    objc_setAssociatedObject(indexPath, &indexPathKey, cell, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-    
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    TweetCell *cell = objc_getAssociatedObject(indexPath, &indexPathKey);
-    return cell.tweetLabelHeight;
+    UIFont *font = [UIFont systemFontOfSize:18];
+    CGSize constraintSize = CGSizeMake(200, MAXFLOAT);
+    Tweet *tweet = [self.tweets objectAtIndex:indexPath.row];
+    CGSize labelSize = [tweet.text sizeWithFont:font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+    CGFloat height = labelSize.height + 10;
+    NSLog(@"height=%f", height);
+    return height;
 }
 
 // TODO: adding this for debugging purposes
