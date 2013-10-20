@@ -22,4 +22,27 @@
     return tweets;
 }
 
+- (NSString *) timestamp {
+    NSString *timestamp = [self.data valueOrNilForKeyPath:@"created_at"];
+    return [self formatTimestamp:timestamp];
+}
+
+- (User *) user {
+    User *user = [User userWithDictionary:[self.data valueOrNilForKeyPath:@"user"]];
+    return user;
+}
+
+- (NSString *) formatTimestamp: (NSString *) timestamp {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"eee MMM dd HH:mm:ss ZZZZ yyyy"];
+  
+    NSDate *tweetDate = [dateFormatter dateFromString: timestamp];
+    NSDate *currentTime=[NSDate date];
+    
+    float interval = -1 * [currentTime timeIntervalSinceDate:tweetDate];
+    TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+    
+    return [timeIntervalFormatter stringForTimeInterval:interval];
+}
+
 @end

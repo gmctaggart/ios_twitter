@@ -7,6 +7,15 @@
 //
 
 #import "TimelineVC.h"
+#import "TweetCell.h"
+
+
+// Define a new type for the block
+typedef void (^ImageLoadedSuccessFunction)(void);
+
+
+static char indexPathKey;
+
 
 @interface TimelineVC ()
 
@@ -35,6 +44,8 @@
     [super viewDidLoad];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOutButton)];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"TweetCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"TweetCell"];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -63,14 +74,81 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    static NSString *CellIdentifier = @"TweetCell";
+    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
 
+    
+    
+    // Setup image loaded success block
     Tweet *tweet = self.tweets[indexPath.row];
-    cell.textLabel.text = tweet.text;
+    [cell setCellWithTweetAndSuccessBlock:tweet withImageLoadedBlock:(ImageLoadedSuccessFunction) ^(void) {
+//        [self.tableView reloadData];
+/*        [self.tableView beginUpdates];
+        NSArray *array = [NSArray arrayWithObject:indexPath];
+        [self reloadRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView endUpdates];
+ */
+    }];
+    
+    
+    
+    // hang on to this text for later
+    objc_setAssociatedObject(self.tableView, &indexPathKey, cell, OBJC_ASSOCIATION_RETAIN);
+    
+    // DO THIS ALREADY IN TWEET CELL
+    // pin label to top
+//    [cell pinToTop];
+//    CGFloat rowHeight = [self heightForText:labelText];
+//    cell.myLabel.frame = CGRectMake(0, 0, 300, rowHeight);
+    
+    
+    // Maybe add loading indicator to image icons
+    /*
+     indicator = [[UIActivityIndicator alloc] initWithActivityIndicatorStyle:
+     UIActivityIndicatorStyleWhite];
+     [indicator startAnimating];
+     */
+    
     
     return cell;
+}
+
+//+ (CGFloat)bodyLabelHeightForBodyString:(NSString *)pBodyString{
+//    CGSize bodySize = [pBodyString sizeWithFont:[UIFont fontWithName:@"HelveticaNeue" size:14.5f] constrainedToSize:CGSizeMake(BodyLabelWidth, MAXFLOAT) lineBreakMode:UILineBreakModeWordWrap];
+//    return bodySize.height;
+//}
+//
+//+ (CGFloat)calculatedCellHeightForBodyString:(NSString *)pBodyString{
+//    //Get body height
+//    CGFloat bodyHeight = [self bodyLabelHeightForBodyString:pBodyString];
+//    return BodyLabelYOrigin + bodyHeight + 10;
+//}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 400;
+    
+    
+//    TweetCell *cell = objc_getAssociatedObject(tableView, &indexPathKey);
+//    return cell.tweetLabelHeight;
+    
+    
+    
+//    UIFont *cellFont = cell.tweetFont;
+//    CGSize constraintSize = CGSizeMake(300, MAXFLOAT);
+//    CGSize labelSize = [cell.tweetText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+//    CGFloat height = labelSize.height + 10;
+////    NSLog(@"height=%f", height);
+//    return height;
+}
+
+// TODO: adding this for debugging purposes
+- (void)reloadRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation
+{
+    [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
 }
 
 /*
@@ -138,7 +216,7 @@
 
 - (void)reload {
     [[TwitterClient instance] homeTimelineWithCount:20 sinceId:0 maxId:0 success:^(AFHTTPRequestOperation *operation, id response) {
-        NSLog(@"%@", response);
+        //NSLog(@"%@", response);
         self.tweets = [Tweet tweetsWithArray:response];
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

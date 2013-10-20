@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <FormatterKit/TTTTimeIntervalFormatter.h>
 
 @interface Tweet : RestObject
 
 @property (nonatomic, strong, readonly) NSString *text;
+@property (nonatomic, strong, readonly) NSString *timestamp;
+@property (nonatomic, strong, readonly) User *user;
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array;
 
