@@ -24,6 +24,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.tweetLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        self.tweetLabel.numberOfLines = 0;
     }
     return self;
 }

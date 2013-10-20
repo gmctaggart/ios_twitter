@@ -41,8 +41,13 @@
     
     float interval = -1 * [currentTime timeIntervalSinceDate:tweetDate];
     TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+    NSString *formattedTime = [timeIntervalFormatter stringForTimeInterval:interval];
     
-    return [timeIntervalFormatter stringForTimeInterval:interval];
+    // TODO: do first space + 1 charachter then remove the whitespace.
+    
+    
+    // remove the 'ago' ending of the string
+    return [formattedTime substringWithRange: NSMakeRange (0, formattedTime.length - 4)];
 }
 
 @end

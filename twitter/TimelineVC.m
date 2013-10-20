@@ -95,7 +95,6 @@ typedef void (^ImageLoadedSuccessFunction)(void);
     Tweet *tweet = [self.tweets objectAtIndex:indexPath.row];
     CGSize labelSize = [tweet.text sizeWithFont:font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
     CGFloat height = labelSize.height + 10;
-    NSLog(@"height=%f", height);
     return height;
 }
 
