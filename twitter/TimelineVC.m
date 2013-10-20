@@ -8,6 +8,7 @@
 
 #import "TimelineVC.h"
 #import "TweetCell.h"
+#import "ComposeTweetVC.h"
 
 
 // Define a new type for the block
@@ -18,6 +19,7 @@ typedef void (^ImageLoadedSuccessFunction)(void);
 
 @property (nonatomic, strong) NSMutableArray *tweets;
 
+- (void)onTweetButton;
 - (void)onSignOutButton;
 - (void)reload;
 
@@ -41,9 +43,10 @@ typedef void (^ImageLoadedSuccessFunction)(void);
     [super viewDidLoad];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOutButton)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Tweet" style:UIBarButtonItemStylePlain target:self action:@selector(onTweetButton)];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"TweetCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"TweetCell"];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -108,6 +111,9 @@ typedef void (^ImageLoadedSuccessFunction)(void);
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    // Open the tweetView here (tableviewCell click)
+//    [self.navigationController pushViewController:booksViewController animated:YES];
 }
 
 /*
@@ -126,6 +132,13 @@ typedef void (^ImageLoadedSuccessFunction)(void);
 
 - (void)onSignOutButton {
     [User setCurrentUser:nil];
+}
+
+- (void)onTweetButton {
+    // push new view
+    ComposeTweetVC *composeVC = [[ComposeTweetVC alloc] init];
+    
+    [self.navigationController pushViewController:composeVC animated:YES];
 }
 
 - (void)reload {
