@@ -14,9 +14,6 @@
 typedef void (^ImageLoadedSuccessFunction)(void);
 
 
-static char indexPathKey;
-
-
 @interface TimelineVC ()
 
 @property (nonatomic, strong) NSMutableArray *tweets;
