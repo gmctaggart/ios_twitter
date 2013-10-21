@@ -15,18 +15,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CW4-r5-jUb" userLabel="UserLabel">
-                        <rect key="frame" x="64" y="0.0" width="201" height="22"/>
+                        <rect key="frame" x="64" y="0.0" width="88" height="22"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvZ-b8-ESR" userLabel="TimeLabel">
-                        <rect key="frame" x="270" y="0.0" width="50" height="17"/>
+                        <rect key="frame" x="276" y="0.0" width="29" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="50" id="LIU-nq-mSQ"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -48,9 +45,9 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="uvZ-b8-ESR" firstAttribute="top" secondItem="OXV-0S-TBd" secondAttribute="top" id="6qx-eZ-bSv"/>
-                    <constraint firstAttribute="trailing" secondItem="uvZ-b8-ESR" secondAttribute="trailing" id="8RL-j7-7Zn"/>
+                    <constraint firstAttribute="trailing" secondItem="uvZ-b8-ESR" secondAttribute="trailing" constant="15" id="8RL-j7-7Zn"/>
                     <constraint firstItem="Q1l-XG-P2P" firstAttribute="leading" secondItem="OXV-0S-TBd" secondAttribute="leading" constant="64" id="Dzw-JG-ZT1"/>
-                    <constraint firstItem="uvZ-b8-ESR" firstAttribute="leading" secondItem="CW4-r5-jUb" secondAttribute="trailing" constant="5" id="NpT-fa-cTI"/>
+                    <constraint firstItem="uvZ-b8-ESR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CW4-r5-jUb" secondAttribute="trailing" constant="5" id="NpT-fa-cTI"/>
                     <constraint firstItem="Q1l-XG-P2P" firstAttribute="top" secondItem="CW4-r5-jUb" secondAttribute="bottom" id="UrK-Zo-FqJ"/>
                     <constraint firstItem="Tl8-uH-p67" firstAttribute="leading" secondItem="OXV-0S-TBd" secondAttribute="leading" id="Z5q-3J-yJx"/>
                     <constraint firstItem="CW4-r5-jUb" firstAttribute="leading" secondItem="Tl8-uH-p67" secondAttribute="trailing" constant="5" id="ap8-8Y-9zA"/>

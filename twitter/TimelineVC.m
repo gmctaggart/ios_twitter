@@ -7,8 +7,6 @@
 //
 
 #import "TimelineVC.h"
-#import "TweetCell.h"
-#import "ComposeTweetVC.h"
 
 
 // Define a new type for the block
@@ -76,17 +74,14 @@ typedef void (^ImageLoadedSuccessFunction)(void);
 {
     static NSString *CellIdentifier = @"TweetCell";
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
     
     // Setup image loaded success block
     Tweet *tweet = self.tweets[indexPath.row];
-    [cell setCellWithTweetAndSuccessBlock:tweet withImageLoadedBlock:(ImageLoadedSuccessFunction) ^(void) {
-            //TODO: Fill in the block
-    }];
     
+    __weak TweetCell *cellForBlock = cell;
+    [cell setCellWithTweet:tweet withImageLoadedBlock:(ImageLoadedSuccessFunction) ^(void) {
+        [cellForBlock setNeedsLayout];
+    }];
     
     return cell;
 }
@@ -101,19 +96,17 @@ typedef void (^ImageLoadedSuccessFunction)(void);
     return height;
 }
 
-// TODO: adding this for debugging purposes
-//- (void)reloadRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation
-//{
-//    [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
-//}
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     // Open the tweetView here (tableviewCell click)
-//    [self.navigationController pushViewController:booksViewController animated:YES];
+    TweetVC *tweetVC = [[TweetVC alloc] init];
+    Tweet *tweet = self.tweets[indexPath.row];
+    [tweetVC setTweet:tweet];
+    
+    [self.navigationController pushViewController:tweetVC animated:YES];
 }
 
 /*

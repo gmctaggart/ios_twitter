@@ -22,9 +22,9 @@
     return tweets;
 }
 
-- (NSString *) timestamp {
+- (NSString *) timestamp:(BOOL)withShortFormat {
     NSString *timestamp = [self.data valueOrNilForKeyPath:@"created_at"];
-    return [self formatTimestamp:timestamp];
+    return [self formatTimestamp:timestamp withShortFormat:withShortFormat];
 }
 
 - (User *) user {
@@ -32,22 +32,25 @@
     return user;
 }
 
-- (NSString *) formatTimestamp: (NSString *) timestamp {
+- (NSString *) formatTimestamp:(NSString *)timestamp withShortFormat:(BOOL)shortFormat  {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"eee MMM dd HH:mm:ss ZZZZ yyyy"];
-  
     NSDate *tweetDate = [dateFormatter dateFromString: timestamp];
-    NSDate *currentTime=[NSDate date];
     
+    if (!shortFormat)
+    {
+        [dateFormatter setDateFormat:@"yyyy-MM-dd 'at' HH:mm"];
+        return [dateFormatter stringFromDate:tweetDate];
+    }
+    
+    NSDate *currentTime=[NSDate date];
     float interval = -1 * [currentTime timeIntervalSinceDate:tweetDate];
     TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
     NSString *formattedTime = [timeIntervalFormatter stringForTimeInterval:interval];
     
-    // TODO: do first space + 1 charachter then remove the whitespace.
-    
-    
     // remove the 'ago' ending of the string
-    return [formattedTime substringWithRange: NSMakeRange (0, formattedTime.length - 4)];
+    NSRange firstSpaceInString = [formattedTime rangeOfString: @" "];
+    return [formattedTime substringWithRange: NSMakeRange (0, firstSpaceInString.location + 2)];
 }
 
 @end

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "TwitterClient.h"
+
 extern NSString *const UserDidLoginNotification;
 extern NSString *const UserDidLogoutNotification;
 

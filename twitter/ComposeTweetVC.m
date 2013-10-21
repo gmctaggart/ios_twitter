@@ -49,6 +49,7 @@ const int MAX_TWEET_CHARACTERS = 140;
     
     self.tweetText.delegate = self;
     self.tweetText.text = @"";
+    self.characterCountLabel.text = [NSString stringWithFormat:@"%d",MAX_TWEET_CHARACTERS];
 }
 
 - (void)viewDidAppear:(BOOL)animated

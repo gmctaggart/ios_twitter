@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 
+#import "TweetCell.h"
+#import "ComposeTweetVC.h"
+#import "TweetVC.h"
+
+
 @interface TimelineVC : UITableViewController
 
 @end

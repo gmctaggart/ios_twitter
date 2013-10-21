@@ -24,38 +24,36 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        self.tweetLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        self.tweetLabel.numberOfLines = 0;
     }
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+//{
+//    [super setSelected:selected animated:animated];
+//
+//    // Configure the view for the selected state
+//}
 
-    // Configure the view for the selected state
-}
-
--(void)setCellWithTweetAndSuccessBlock:(Tweet *)tweet withImageLoadedBlock:(void (^)(void))successFunction
+-(void)setCellWithTweet:(Tweet *)tweet withImageLoadedBlock:(void (^)(void))successFunction
 {
+    if (_tweet == nil)
+    {
+        [self.imageView setImageWithURL:[NSURL URLWithString:tweet.user.profilePicURL]
+                              completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                                  successFunction();
+                              }];
+    }
+    
     _tweet = tweet;
 
-    self.tweetLabel.text = tweet.text;
-    self.timestampLabel.text = tweet.timestamp;
-    self.usernameLabel.text = tweet.user.name;
-    
     // make the tweet label multi-line
     self.tweetLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.tweetLabel.numberOfLines = 0;
-    
 
-    //    [self.imageView setImageWithURL:[NSURL URLWithString:tweet.user.profilePicURL]];
-    
-    [self.imageView setImageWithURL:[NSURL URLWithString:tweet.user.profilePicURL]
-                          completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                              successFunction();
-                          }];
+    self.tweetLabel.text = tweet.text;
+    self.timestampLabel.text = [tweet timestamp:YES];
+    self.usernameLabel.text = tweet.user.name;
 }
 
 
