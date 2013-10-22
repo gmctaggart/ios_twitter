@@ -75,9 +75,7 @@
 - (IBAction)onReplyButton:(id) sender
 {
     // push new view
-    NSString *replyString = [NSString stringWithFormat:@"@%@ ", self.tweet.user.name];
-//    [replyString stringByAppendingString:self.tweet.user.name];
-    ComposeTweetVC *composeVC = [[ComposeTweetVC alloc] initWithText:replyString];
+    ComposeTweetVC *composeVC = [[ComposeTweetVC alloc] initWithTweet:self.tweet];
     
 //    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:composeVC];
 //    [self presentViewController:nvc animated:YES completion:nil];

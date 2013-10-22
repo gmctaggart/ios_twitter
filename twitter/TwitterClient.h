@@ -28,4 +28,6 @@
 
 - (void)favouriteWithTweet:(Tweet *)tweet success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+-(void)postTweet:(NSString *)tweetText withReplyId:(NSString *)replyStatusId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 @end

@@ -17,7 +17,7 @@ const int MAX_TWEET_CHARACTERS = 140;
 @property (weak, nonatomic) IBOutlet UITextView *tweetText;
 @property (weak, nonatomic) IBOutlet UILabel *characterCountLabel;
 
-@property (weak, nonatomic) NSString *predefinedText;
+@property (weak, nonatomic) Tweet *tweet;
 
 - (IBAction)onCancelButton:(id) sender;
 - (IBAction)onTweetButton:(id) sender;
@@ -26,14 +26,14 @@ const int MAX_TWEET_CHARACTERS = 140;
 
 @implementation ComposeTweetVC
 
-- (id)initWithText:(NSString *)textToPopulate
+- (id)initWithTweet:(Tweet *)tweet
 {
     self = [super init];
     if (self) {
         // Custom initialization
     }
     
-    _predefinedText = textToPopulate;
+    _tweet = tweet;
     return self;
 }
 
@@ -59,13 +59,15 @@ const int MAX_TWEET_CHARACTERS = 140;
     // Do any additional setup after loading the view from its nib.
     
     [self.cancelButton addTarget:self action:@selector(onCancelButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.tweetButton addTarget:self action:@selector(onTweetButton:) forControlEvents:UIControlEventTouchUpInside];
     
     self.tweetText.delegate = self;
     
     self.tweetText.text = @"";
-    if (self.predefinedText != nil)
+    if (self.tweet != nil)
     {
-        self.tweetText.text = self.predefinedText;
+        NSString *replyString = [NSString stringWithFormat:@"@%@ ", self.tweet.user.name];
+        self.tweetText.text = replyString;
     }
     
     self.characterCountLabel.text = [NSString stringWithFormat:@"%d", MAX_TWEET_CHARACTERS - self.tweetText.text.length];
@@ -94,7 +96,14 @@ const int MAX_TWEET_CHARACTERS = 140;
 
 - (IBAction)onTweetButton:(id) sender
 {
-    // do something to send a tweet!
+    [[TwitterClient instance] postTweet:self.tweetText.text withReplyId:self.tweet.statusId success:^(AFHTTPRequestOperation *operation, id response) {
+        NSLog(@"%@", response);
+        [self onCancelButton:nil];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"ERROR: %@", error);
+        // Do nothing
+    }];
+
 }
 
 #pragma TextView Delegate

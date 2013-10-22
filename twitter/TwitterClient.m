@@ -66,8 +66,9 @@ static NSString * const kAccessTokenKey = @"kAccessTokenKey";
 }
 
 - (void)retweetWithStatusId:(NSString *)statusId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id": statusId}];
-
+    
     NSString *path = [NSString stringWithFormat:@"1.1/statuses/retweet/%@.json", statusId];
     [self postPath:path parameters:params success:success failure:failure];
 }
@@ -84,6 +85,18 @@ static NSString * const kAccessTokenKey = @"kAccessTokenKey";
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id": tweet.statusId}];
         [self postPath: @"1.1/favorites/destroy.json" parameters:params success:success failure:failure];
     }
+}
+
+- (void)postTweet:(NSString *)tweetText withReplyId:(NSString *)replyStatusId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"status": tweetText}];
+    
+    if (replyStatusId != nil) {
+        [params setObject:replyStatusId forKey:@"in_reply_to_status_id"];
+    }
+    
+    [self postPath:@"1.1/statuses/update.json" parameters:params success:success failure:failure];
+
 }
 
 #pragma mark - Private methods

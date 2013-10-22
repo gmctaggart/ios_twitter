@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TwitterClient.h"
+#import "Tweet.h"
 
 @interface ComposeTweetVC : UIViewController <UITextViewDelegate>
 
-- (id)initWithText:(NSString *)textToPopulate;
+- (id)initWithTweet:(Tweet *)tweet;
 
 @end
