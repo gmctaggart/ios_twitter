@@ -64,17 +64,34 @@
 
 - (IBAction)onRetweetButton:(id) sender
 {
-    
+    [[TwitterClient instance] retweetWithStatusId:self.tweet.statusId success:^(AFHTTPRequestOperation *operation, id response) {
+//        NSLog(@"%@", response);
+        // Do nothing
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        // Do nothing
+    }];
 }
 
 - (IBAction)onReplyButton:(id) sender
 {
+    // push new view
+    NSString *replyString = [NSString stringWithFormat:@"@%@ ", self.tweet.user.name];
+//    [replyString stringByAppendingString:self.tweet.user.name];
+    ComposeTweetVC *composeVC = [[ComposeTweetVC alloc] initWithText:replyString];
     
+//    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:composeVC];
+//    [self presentViewController:nvc animated:YES completion:nil];
+    [self.navigationController pushViewController:composeVC animated:YES];
 }
 
 - (IBAction)onFavouriteButton:(id) sender
 {
-    
+    [[TwitterClient instance] favouriteWithStatusId:self.tweet.statusId success:^(AFHTTPRequestOperation *operation, id response) {
+//        NSLog(@"%@", response);
+        // Do nothing
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        // Do nothing
+    }];
 }
 
 

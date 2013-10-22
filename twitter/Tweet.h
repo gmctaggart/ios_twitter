@@ -14,6 +14,7 @@
 @property (nonatomic, strong, readonly) NSString *text;
 //@property (nonatomic, strong, readonly) NSString *timestamp;
 @property (nonatomic, strong, readonly) User *user;
+@property (nonatomic, strong, readonly) NSString *statusId;
 
 - (NSString *) timestamp:(BOOL)withShortFormat;
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array;

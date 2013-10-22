@@ -17,12 +17,25 @@ const int MAX_TWEET_CHARACTERS = 140;
 @property (weak, nonatomic) IBOutlet UITextView *tweetText;
 @property (weak, nonatomic) IBOutlet UILabel *characterCountLabel;
 
+@property (weak, nonatomic) NSString *predefinedText;
+
 - (IBAction)onCancelButton:(id) sender;
 - (IBAction)onTweetButton:(id) sender;
 
 @end
 
 @implementation ComposeTweetVC
+
+- (id)initWithText:(NSString *)textToPopulate
+{
+    self = [super init];
+    if (self) {
+        // Custom initialization
+    }
+    
+    _predefinedText = textToPopulate;
+    return self;
+}
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -48,8 +61,16 @@ const int MAX_TWEET_CHARACTERS = 140;
     [self.cancelButton addTarget:self action:@selector(onCancelButton:) forControlEvents:UIControlEventTouchUpInside];
     
     self.tweetText.delegate = self;
+    
     self.tweetText.text = @"";
-    self.characterCountLabel.text = [NSString stringWithFormat:@"%d",MAX_TWEET_CHARACTERS];
+    if (self.predefinedText != nil)
+    {
+        self.tweetText.text = self.predefinedText;
+    }
+    
+    self.characterCountLabel.text = [NSString stringWithFormat:@"%d", MAX_TWEET_CHARACTERS - self.tweetText.text.length];
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -10,4 +10,6 @@
 
 @interface ComposeTweetVC : UIViewController <UITextViewDelegate>
 
+- (id)initWithText:(NSString *)textToPopulate;
+
 @end

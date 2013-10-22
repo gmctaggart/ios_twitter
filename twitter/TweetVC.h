@@ -9,6 +9,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <UIKit/UIKit.h>
 #import "Tweet.h"
+#import "ComposeTweetVC.h"
 
 @interface TweetVC : UIViewController
 
