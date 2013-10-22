@@ -86,10 +86,13 @@
 
 - (IBAction)onFavouriteButton:(id) sender
 {
-    [[TwitterClient instance] favouriteWithStatusId:self.tweet.statusId success:^(AFHTTPRequestOperation *operation, id response) {
-//        NSLog(@"%@", response);
-        // Do nothing
+    [[TwitterClient instance] favouriteWithTweet:self.tweet success:^(AFHTTPRequestOperation *operation, id response) {
+        NSLog(@"%@", response);
+        // Mark the tweet as favourited
+        self.tweet.isFavourite = !self.tweet.isFavourite;
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"ERROR: %@", error);
         // Do nothing
     }];
 }

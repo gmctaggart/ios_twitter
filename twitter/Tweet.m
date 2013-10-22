@@ -18,6 +18,12 @@
     return [self.data valueOrNilForKeyPath:@"id"];
 }
 
+
+- (BOOL)isFavourite {
+    NSString *favourited = [self.data valueOrNilForKeyPath:@"favorited"];
+    return [favourited boolValue];
+}
+
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array {
     NSMutableArray *tweets = [[NSMutableArray alloc] initWithCapacity:array.count];
     for (NSDictionary *params in array) {

@@ -7,6 +7,7 @@
 //
 
 #import "AFOAuth1Client.h"
+#import "Tweet.h"
 
 @interface TwitterClient : AFOAuth1Client
 
@@ -25,6 +26,6 @@
 
 - (void)retweetWithStatusId:(NSString *)statusId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
-- (void)favouriteWithStatusId:(NSString *)statusId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+- (void)favouriteWithTweet:(Tweet *)tweet success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 @end
