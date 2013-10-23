@@ -54,6 +54,10 @@
     [self.retweetButton addTarget:self action:@selector(onRetweetButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.replyButton addTarget:self action:@selector(onReplyButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.favouriteButton addTarget:self action:@selector(onFavouriteButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    // add iOS 7 nav bar constraints
+    [self addNavBarTopGuideConstraintWithUIElement: self.imageView withSpacing:20];
+    [self addNavBarTopGuideConstraintWithUIElement: self.usernameLabel withSpacing:40];
 }
 
 - (void)didReceiveMemoryWarning

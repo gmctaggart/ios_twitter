@@ -72,7 +72,9 @@ const int MAX_TWEET_CHARACTERS = 140;
     
     self.characterCountLabel.text = [NSString stringWithFormat:@"%d", MAX_TWEET_CHARACTERS - self.tweetText.text.length];
     
-    
+    [self addNavBarTopGuideConstraintWithUIElement: self.cancelButton withSpacing:10];
+    [self addNavBarTopGuideConstraintWithUIElement: self.characterCountLabel withSpacing:10];
+    [self addNavBarTopGuideConstraintWithUIElement: self.tweetButton withSpacing:10];
 }
 
 - (void)viewDidAppear:(BOOL)animated

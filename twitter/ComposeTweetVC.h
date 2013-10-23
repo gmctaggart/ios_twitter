@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewController+Utilities.h"
 #import "TwitterClient.h"
 #import "Tweet.h"
 

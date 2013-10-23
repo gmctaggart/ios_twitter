@@ -45,6 +45,7 @@
                               }];
     }
     
+    
     _tweet = tweet;
 
     // make the tweet label multi-line

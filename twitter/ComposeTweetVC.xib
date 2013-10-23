@@ -19,28 +19,28 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Tweet Text Goes Here!" translatesAutoresizingMaskIntoConstraints="NO" id="EXD-4L-UNM">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="Tweet Text Goes Here!" translatesAutoresizingMaskIntoConstraints="NO" id="EXD-4L-UNM">
                     <rect key="frame" x="0.0" y="35" width="320" height="533"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KSs-l0-y6Y" userLabel="CancelButton">
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KSs-l0-y6Y" userLabel="CancelButton">
                     <rect key="frame" x="5" y="5" width="48" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Cancel">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7e-Ta-wSd" userLabel="TweetButton">
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7e-Ta-wSd" userLabel="TweetButton">
                     <rect key="frame" x="271" y="5" width="44" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Tweet!">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="255" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Og-aU-vz5" userLabel="charCountLabel">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="255" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Og-aU-vz5" userLabel="charCountLabel">
                     <rect key="frame" x="147" y="5" width="26" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -51,7 +51,6 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="q7e-Ta-wSd" secondAttribute="trailing" constant="5" id="27g-Zn-sf2"/>
-                <constraint firstItem="q7e-Ta-wSd" firstAttribute="top" secondItem="1" secondAttribute="top" constant="5" id="4rT-oW-Xja"/>
                 <constraint firstItem="0Og-aU-vz5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KSs-l0-y6Y" secondAttribute="trailing" constant="5" id="74F-fO-w1W"/>
                 <constraint firstItem="KSs-l0-y6Y" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="5" id="HO5-xr-359"/>
                 <constraint firstItem="q7e-Ta-wSd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0Og-aU-vz5" secondAttribute="trailing" constant="5" id="HyV-kU-JOX"/>
@@ -60,8 +59,6 @@
                 <constraint firstItem="EXD-4L-UNM" firstAttribute="top" secondItem="KSs-l0-y6Y" secondAttribute="bottom" id="PVO-Ow-Uwc"/>
                 <constraint firstAttribute="bottom" secondItem="EXD-4L-UNM" secondAttribute="bottom" id="RQC-t3-Vtf"/>
                 <constraint firstAttribute="trailing" secondItem="EXD-4L-UNM" secondAttribute="trailing" id="aJy-gs-mCI"/>
-                <constraint firstItem="0Og-aU-vz5" firstAttribute="top" secondItem="1" secondAttribute="top" constant="5" id="d91-IA-YeJ"/>
-                <constraint firstItem="KSs-l0-y6Y" firstAttribute="top" secondItem="1" secondAttribute="top" constant="5" id="rwe-aF-j0A"/>
                 <constraint firstItem="EXD-4L-UNM" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="snm-V4-zE7"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
